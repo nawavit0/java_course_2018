@@ -1,9 +1,6 @@
 package Day4;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class MainSorting {
     public static void main(String[] args){
@@ -19,7 +16,14 @@ public class MainSorting {
         employees.forEach(System.out::println);
 
         System.out.println("=============================================");
-        Collections.sort(employees, new SortingBySalaryWithDecending());
+
+        // Normal Java for Sorting (1) - with Class for readable
+        //=========================================================================================
+//        Collections.sort(employees, new SortingBySalaryWithDecending());
+        //=========================================================================================
+
+        // Normal Java for Sorting (2)
+        //=========================================================================================
 //        Collections.sort(employees, new Comparator<Employee>() {
 //            @Override
 //            public int compare(Employee e1, Employee e2) {
@@ -29,6 +33,13 @@ public class MainSorting {
 //                //return e1.getId() - e2.getId(); //compare ID (int)
 //            }
 //        });
+        //=========================================================================================
+
+        //Lambda Expresion for sorting
+        //=========================================================================================
+        Comparator<Employee> lambda = (Employee e1, Employee e2) -> (int)(e2.getSalary()-e1.getSalary());
+        Collections.sort(employees, lambda);
+        //=========================================================================================
 
         employees.forEach(System.out::println);
     }
